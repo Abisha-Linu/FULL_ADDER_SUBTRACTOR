@@ -38,18 +38,44 @@ Borrow out = A'Bin + A'B + BBin
 
 **Truthtable**
 
+![image](https://github.com/user-attachments/assets/1020568c-7bd7-4e86-b90d-ac1d3ed5a08f)
+
+![image](https://github.com/user-attachments/assets/3388fd64-c6c8-427c-9992-2f13465e8884)
+
 **Procedure**
 
-Write the detailed procedure here
-
+ Full Adder: Inputs: Three inputs: A, B (the two bits to be added), and Cin (the carry-in bit from a
+ previous addition). Outputs: Two outputs: Sum (the resulting sum) and Cout (the carry-out bit).
+ Logic: Sum = A ^ B ^ Cin (XOR operation). Cout = (A & B) | (A & Cin) | (B & Cin) (carry occurs if at
+ least two inputs are 1).
+ Full Subtractor: Inputs: Three inputs: A, B (the two bits, where A - B is calculated), and Bin (the
+ borrow-in from a previous subtraction). Outputs: Two outputs: Diff (the resulting difference) and
+ Bout (the borrow out bit). Logic: Diff = A ^ B ^ Bin (XOR operation). Bout = (~A & B) | ((~A | B) &
+ Bin) (borrow occurs if A is less than B or needs a borrow). Both circuits follow simple XOR logic for
+ the primary result and AND-OR logic to determine carry or borrow conditions
+ 
 **Program:**
+```
+Program to design a half subtractor and full subtractor circuit and verify its truth table in quartus using Verilog programming.
+Developed by:Abisha Linu.L
+RegisterNumber:24900028
 
-/* Program to design a half subtractor and full subtractor circuit and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/
-
+```
+```
+ module fulladdsub(a,b,cin,bin,sum,carry,difference,borrow); 
+input a,b,cin,bin; output sum,carry,difference,borrow; 
+assign sum=a^b^cin; 
+assign carry=(a^b)&cin|a&b;
+ assign difference=a^b^bin; 
+assign borrow=~(a^b)&bin|(~a)&b;
+```
 **RTL Schematic**
 
+![image](https://github.com/user-attachments/assets/48e763cd-2de5-4853-b4a6-fb7a91b1eeb7)
+
 **Output Timing Waveform**
+
+![image](https://github.com/user-attachments/assets/0263b286-88f0-4443-b01a-087cb9f51918)
 
 **Result:**
 
